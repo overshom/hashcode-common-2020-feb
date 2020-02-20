@@ -21,6 +21,7 @@ const run = () => {
         }))
 const resultDate = [];
 let subIndexAmount = 0;
+let countOfLibs = 0;
 
 for(let index = 0; index < data.total_libs; index ++) {
     const libScoupe = data.libs;
@@ -36,6 +37,9 @@ for(let index = 0; index < data.total_libs; index ++) {
       const element = data.libs.pop();
       subIndexAmount += element.pureDate.signup_time;
       resultDate.push(element);
+      if(data.deadline - subIndexAmount - element.signup_time >= 0){
+        countOfLibs++;
+      }
 }
 
 const finalObject = {

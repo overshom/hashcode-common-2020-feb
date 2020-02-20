@@ -1,5 +1,19 @@
 import { readFileSync } from 'fs'
 
+export interface ILib {
+    index: number
+    total_books: number
+    signup_time: number
+    books_per_day: number
+    total_potential_score: number
+    desc_score_books: IBook[]
+}
+
+export interface IBook {
+    id: number
+    score: number
+}
+
 export const getInputData = (file: string) => {
     const str = readFileSync('input-data/' + file, { encoding: 'ascii' })
     const lines = str.split('\n').slice(0, -1)
@@ -7,17 +21,7 @@ export const getInputData = (file: string) => {
     let total_libs = 0
     let deadline = 0
     let all_scores: number[] = []
-    const libs: {
-        index: number
-        total_books: number
-        signup_time: number
-        books_per_day: number
-        total_potential_score: number
-        desc_score_books: {
-            id: number
-            score: number
-        }[]
-    }[] = []
+    const libs: ILib[] = []
     for (let i = 0; i < lines.length; i++) {
         const nums = lines[i].split(' ').map(e => +e)
         if (i === 0) {

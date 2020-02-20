@@ -8,6 +8,7 @@ export const getInputData = (file: string) => {
     let deadline = 0
     let all_scores: number[] = []
     const libs: {
+        index: number
         total_books: number
         signup_time: number
         books_per_day: number
@@ -28,7 +29,11 @@ export const getInputData = (file: string) => {
             all_scores = nums
         } else {
             const [total_books, signup_time, books_per_day] = nums
-            const id_books = lines[++i].split(' ').map(e => +e)
+            const new_line = lines[++i]
+            if (!new_line) {
+                break
+            }
+            const id_books = new_line.split(' ').map(e => +e)
             const desc_score_books = id_books.map(id => {
                 return {
                     id,
@@ -37,6 +42,7 @@ export const getInputData = (file: string) => {
             })
             desc_score_books.sort((a, b) => b.score - a.score)
             libs.push({
+                index: (i - 3) / 2,
                 total_books,
                 signup_time,
                 books_per_day,
@@ -46,6 +52,10 @@ export const getInputData = (file: string) => {
                 desc_score_books,
             })
         }
+    }
+    if (libs.length !== total_libs) {
+        console.error({ expected: total_libs, provided: libs.length })
+        throw new Error('libs parsed not equal to libs count expected')
     }
     return {
         total_books,

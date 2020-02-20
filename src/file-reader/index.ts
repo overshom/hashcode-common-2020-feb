@@ -16,7 +16,6 @@ export const getInputData = (file: string) => {
             score: number
         }[]
     }[] = []
-    console.log({ lines })
     for (let i = 0; i < lines.length; i++) {
         const nums = lines[i].split(' ').map(e => +e)
         if (i === 0) {

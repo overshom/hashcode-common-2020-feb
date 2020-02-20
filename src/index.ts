@@ -38,7 +38,20 @@ for(let index = 0; index < data.total_libs; index ++) {
       resultDate.push(element);
 }
 
-console.log(resultDate);
+const finalObject = {
+    filename: 'result.txt',
+    lib_flow: resultDate.map(i => {
+return {
+    index: i.lib_id,
+    book_order: i.pureDate.desc_score_books.map((u: any) => u.id)
+}
+    }),
+};
+
+
+
+console.log(finalObject);
+
 }
 
 run()

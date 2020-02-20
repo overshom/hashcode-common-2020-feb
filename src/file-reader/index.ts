@@ -11,7 +11,8 @@ export const getInputData = (file: string) => {
         total_books: number
         signup_time: number
         ship_time: number
-        books: {
+        total_potential_score: number
+        desc_score_books: {
             id: number
             score: number
         }[]
@@ -28,17 +29,21 @@ export const getInputData = (file: string) => {
         } else {
             const [total_books, signup_time, ship_time] = nums
             const id_books = lines[++i].split(' ').map(e => +e)
-            const books = id_books.map(id => {
+            const desc_score_books = id_books.map(id => {
                 return {
                     id,
                     score: all_scores[id],
                 }
             })
+            desc_score_books.sort((a, b) => b.score - a.score)
             libs.push({
                 total_books,
                 signup_time,
                 ship_time,
-                books,
+                total_potential_score: desc_score_books.reduce((a, v) => {
+                    return a + v.score
+                }, 0),
+                desc_score_books,
             })
         }
     }

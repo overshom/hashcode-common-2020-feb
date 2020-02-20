@@ -1,7 +1,8 @@
 import { getInputData } from './file-reader'
 
 const run = () => {
-    console.log(getInputData('a_example.txt'))
+    const data = getInputData('a_example.txt')
+    console.log(data)
 }
 
 run()

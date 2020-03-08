@@ -15,5 +15,5 @@ export const createAnswer = (config: {
         data.push(`${lib.index} ${lib.book_order.length}`)
         data.push(lib.book_order.join(' '))
     }
-    writeFileSync('output-data/' + config.filename, data.join('\n'))
+    writeFileSync('output-data/' + config.filename, data.join('\n') + '\n')
 }

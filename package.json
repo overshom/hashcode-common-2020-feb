@@ -25,7 +25,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "axios": "0.19.0",
+    "axios": "0.21.1",
     "overshom-valid": "1.0.0",
     "overshom-utils": "1.0.7"
   },
